@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding the Oldest</title>
+</head>
+<body>
+    <script>
+
+const findTheOldest = function (input) {
+  sortedAge = input.sort(function (firstPerson, secondPerson) {
+    for (let person in input) {
+      if (person.yearOfDeath === undefined) {
+        let d = new Date()
+        let year = d.getFullYear()
+        person.yearOfDeath = year
+      }
+    }
+    if ((firstPerson.yearOfDeath - firstPerson.yearOfBirth) > (secondPerson.yearOfDeath - secondPerson.yearOfBirth)) {
+      return -1
+    }
+    else {
+      return 1
+    }
+  })
+
+  console.table(sortedAge)
+  return sortedAge[0]
+};
+
+
+const people = [
+      {
+        name: "Carly",
+        yearOfBirth: 2018,
+      },
+      {
+        name: "Ray",
+        yearOfBirth: 1962,
+        yearOfDeath: 2011, 
+      },
+      {
+        name: "Jane",
+        yearOfBirth: 1912,
+        yearOfDeath: 1941,
+      },
+    ]
+
+findTheOldest(people).name
+    </script>
+</body>
+</html>
